@@ -1,7 +1,7 @@
-package com.github.mainproducer.service;
+package com.github.mathlazaro.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mainproducer.model.JokeResponseDTO;
+import com.github.mathlazaro.model.JokeResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

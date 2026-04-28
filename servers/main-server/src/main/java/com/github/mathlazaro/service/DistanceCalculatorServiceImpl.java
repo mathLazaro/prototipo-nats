@@ -1,6 +1,5 @@
-package com.github.mainproducer.service;
+package com.github.mathlazaro.service;
 
-import com.github.mainproducer.configuration.NatsConnectionManager;
 import distribuidos.api.model.FlowerFeature;
 import distribuidos.api.service.DistanceCalculatorService;
 

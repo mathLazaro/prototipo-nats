@@ -1,4 +1,4 @@
-package com.github.mainproducer.model;
+package com.github.mathlazaro.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

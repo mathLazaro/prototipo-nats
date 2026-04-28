@@ -2,17 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github</groupId>
-    <artifactId>main-producer</artifactId>
+    <groupId>com.github.mathlazaro</groupId>
+    <artifactId>main-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>main-producer</name>
-    <description>Main producer for the NATS prototype</description>
+    <name>main-server</name>
+    <description>Main server for the NATS prototype</description>
     <url/>
     <repositories>
         <repository>
             <id>github</id>
             <url>https://maven.pkg.github.com/mathLazaro/atividade-rmi-shared</url>
+
         </repository>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/mathLazaro/nats-conn-manager</url>
+        </repository>
+
     </repositories>
 
     <properties>
@@ -20,7 +26,7 @@
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <java.version>25</java.version>
         <lombok.version>1.18.38</lombok.version>
-        <app.mainClass>com.github.mainproducer.MainProducer</app.mainClass>
+        <app.mainClass>com.github.mathlazaro.MainServer</app.mainClass>
     </properties>
     <dependencies>
         <dependency>
@@ -40,6 +46,12 @@
             <artifactId>atividade-rmi-shared</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.mathlazaro</groupId>
+            <artifactId>nats-conn-manager</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>

@@ -1,15 +1,15 @@
-package com.github.mainproducer;
+package com.github.mathlazaro;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mainproducer.configuration.NatsConnectionManager;
-import com.github.mainproducer.messaging.DistanceCalculatorHandler;
-import com.github.mainproducer.messaging.MessageRequestHandler;
-import com.github.mainproducer.service.DistanceCalculatorServiceImpl;
-import com.github.mainproducer.service.JokesApiClient;
+import com.github.mathlazaro.configuration.NatsConnectionManager;
+import com.github.mathlazaro.messaging.DistanceCalculatorHandler;
+import com.github.mathlazaro.messaging.MessageRequestHandler;
+import com.github.mathlazaro.service.DistanceCalculatorServiceImpl;
+import com.github.mathlazaro.service.JokesApiClient;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public final class MainProducer {
+public final class MainServer {
 
     private final static String NATS_URL = System.getenv().getOrDefault("NATS_URL", "nats://localhost:4222");
 

@@ -1,4 +1,4 @@
-package com.github.mainproducer.model;
+package com.github.mathlazaro.model;
 
 import distribuidos.api.model.FlowerFeature;
 

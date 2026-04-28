@@ -1,10 +1,10 @@
-package com.github.mainproducer.messaging;
+package com.github.mathlazaro.messaging;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mainproducer.model.ReplyDTO;
-import com.github.mainproducer.model.RequestDistanceCalcDTO;
-import com.github.mainproducer.service.DistanceCalculatorServiceImpl;
+import com.github.mathlazaro.domain.EventDTO;
+import com.github.mathlazaro.model.RequestDistanceCalcDTO;
+import com.github.mathlazaro.service.DistanceCalculatorServiceImpl;
 import io.nats.client.Message;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -19,23 +19,23 @@ public class DistanceCalculatorHandler {
 
     private final ObjectMapper objectMapper;
 
-    public ReplyDTO<?> handleEuclideanCalculation(Message message) {
+    public EventDTO<?> handleEuclideanCalculation(Message message) {
         try {
             RequestDistanceCalcDTO request = deserialize(message);
             double result = calculatorService.calculateDistanceByEclidean(request.features1(), request.features2());
-            return ReplyDTO.success(result);
+            return EventDTO.success(result);
         } catch (IOException e) {
-            return ReplyDTO.error("Erro ao desserializar requisição");
+            return EventDTO.error("Erro ao desserializar requisição");
         }
     }
 
-    public ReplyDTO<?> handleCityBlockCalculation(Message message) {
+    public EventDTO<?> handleCityBlockCalculation(Message message) {
         try {
             RequestDistanceCalcDTO request = deserialize(message);
             double result = calculatorService.calculateDistanceByCityBlock(request.features1(), request.features2());
-            return ReplyDTO.success(result);
+            return EventDTO.success(result);
         } catch (IOException e) {
-            return ReplyDTO.error("Erro ao desserializar requisição");
+            return EventDTO.error("Erro ao desserializar requisição");
         }
     }
 
