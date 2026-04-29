@@ -14,7 +14,7 @@ public class MainFileServer {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
-    static void main() {
+    public static void main(String[] args) throws Exception {
 
         log.info("file-server starting");
 
@@ -25,9 +25,11 @@ public class MainFileServer {
         Connection nc = connManager.getNc();
 
         nc.createDispatcher(fileHandler.handleSaveFile()).subscribe("file.save", "file-queue");
-        nc.createDispatcher(fileHandler.handleReadFile()).subscribe("file.read", "file-queue");
         nc.createDispatcher(fileHandler.handleAppendFile()).subscribe("file.append", "file-queue");
         nc.createDispatcher(fileHandler.handleDeleteFile()).subscribe("file.delete", "file-queue");
+
+        // funciona com request reply
+        connManager.publishReply("file.read", fileHandler::handleReadFile);
 
     }
 }

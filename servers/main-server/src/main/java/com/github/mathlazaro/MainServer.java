@@ -16,7 +16,7 @@ public final class MainServer {
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
 
-    static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         log.info("main-producer starting");
 
         DistanceCalculatorHandler calculatorHandler = new DistanceCalculatorHandler(new DistanceCalculatorServiceImpl(), objectMapper);

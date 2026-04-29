@@ -8,9 +8,10 @@ public class MainView implements View {
 
     public MainOperation readMainOperation() {
         try {
-            System.out.println("Escolha a operação (1 ou 2):");
+            System.out.println("Escolha a operação (1 a 3):");
             System.out.println("1. Cálculo de distância (flores)");
             System.out.println("2. Mensagens");
+            System.out.println("3. Gerenciamento de arquivos");
             System.out.print("Opção: ");
             int option = IN.nextInt();
             IN.nextLine();
@@ -20,6 +21,7 @@ public class MainView implements View {
             return switch (option) {
                 case 1 -> MainOperation.FLOWER_CALCULATION;
                 case 2 -> MainOperation.MESSAGE;
+                case 3 -> MainOperation.FILE;
                 default -> throw new IllegalArgumentException("Opção inválida");
             };
         } catch (IllegalArgumentException e) {

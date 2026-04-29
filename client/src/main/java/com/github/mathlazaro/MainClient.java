@@ -2,6 +2,7 @@ package com.github.mathlazaro;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.mathlazaro.configuration.NatsConnectionManager;
+import com.github.mathlazaro.controller.FileController;
 import com.github.mathlazaro.controller.FlowerController;
 import com.github.mathlazaro.controller.MessageController;
 import com.github.mathlazaro.model.main.MainOperation;
@@ -20,15 +21,16 @@ public class MainClient {
 
     public final static Scanner IN = new Scanner(System.in);
 
-    static void main() {
+    public static void main(String[] args) throws Exception {
 
-        log.info("client starting");
+        log.info("client iniciando");
 
 
         NatsConnectionManager connManager = new NatsConnectionManager(NATS_URL, "client", mapper);
 
         FlowerController flowerController = new FlowerController(connManager.getNc(), mapper);
         MessageController messageController = new MessageController(connManager.getNc(), mapper);
+        FileController fileController = new FileController(connManager.getNc(), mapper);
 
         MainView mainView = new MainView();
 
@@ -38,6 +40,7 @@ public class MainClient {
             switch (operation) {
                 case FLOWER_CALCULATION -> flowerController.run();
                 case MESSAGE -> messageController.run();
+                case FILE -> fileController.run();
             }
 
         } while (View.readKeepRunning(IN));

@@ -32,5 +32,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+TEMP/
+
 ### VS Code ###
 .vscode/
