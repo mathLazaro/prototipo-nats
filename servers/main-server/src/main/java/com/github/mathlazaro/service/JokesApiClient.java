@@ -1,7 +1,7 @@
 package com.github.mathlazaro.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.mathlazaro.model.JokeResponseDTO;
+import com.github.mathlazaro.model.joke.JokeResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -31,13 +31,11 @@ public class JokesApiClient {
         try {
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
+            connection.setReadTimeout(5000);
+            connection.setConnectTimeout(5000);
 
-            if (connection.getResponseCode() == 200) {
-                return Optional.ofNullable(deserializeResponse(connection.getInputStream(), type));
-            } else {
-                return Optional.empty();
-            }
 
+            return Optional.ofNullable(deserializeResponse(connection.getInputStream(), type));
         } catch (Exception e) {
             log.error(e.getMessage());
             return Optional.empty();
@@ -47,6 +45,9 @@ public class JokesApiClient {
 
     private JokeResponseDTO deserializeResponse(InputStream input, String type) {
         try {
+            if (input == null) {
+                return null;
+            }
             JokeResponseDTO dto;
             if (VALID_TYPES.contains(type)) {
                 dto = Stream.of(mapper.readValue(input, JokeResponseDTO[].class)).findFirst().orElse(null);

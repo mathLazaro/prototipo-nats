@@ -3,7 +3,9 @@ package com.github.mathlazaro.messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.mathlazaro.domain.EventDTO;
-import com.github.mathlazaro.model.RequestDistanceCalcDTO;
+import com.github.mathlazaro.model.flower.DistanceMethod;
+import com.github.mathlazaro.model.flower.RequestDistanceCalcDTO;
+import com.github.mathlazaro.model.flower.ResponseDistanceCalcDTO;
 import com.github.mathlazaro.service.DistanceCalculatorServiceImpl;
 import io.nats.client.Message;
 import lombok.AllArgsConstructor;
@@ -22,8 +24,9 @@ public class DistanceCalculatorHandler {
     public EventDTO<?> handleEuclideanCalculation(Message message) {
         try {
             RequestDistanceCalcDTO request = deserialize(message);
-            double result = calculatorService.calculateDistanceByEclidean(request.features1(), request.features2());
-            return EventDTO.success(result);
+            double result = calculatorService.calculateDistanceByEclidean(request.featureA(), request.featureB());
+            ResponseDistanceCalcDTO response = new ResponseDistanceCalcDTO(DistanceMethod.EUCLIDEAN, request.featureA(), request.featureB(), result);
+            return EventDTO.success(response);
         } catch (IOException e) {
             return EventDTO.error("Erro ao desserializar requisição");
         }
@@ -32,8 +35,9 @@ public class DistanceCalculatorHandler {
     public EventDTO<?> handleCityBlockCalculation(Message message) {
         try {
             RequestDistanceCalcDTO request = deserialize(message);
-            double result = calculatorService.calculateDistanceByCityBlock(request.features1(), request.features2());
-            return EventDTO.success(result);
+            double result = calculatorService.calculateDistanceByCityBlock(request.featureA(), request.featureB());
+            ResponseDistanceCalcDTO response = new ResponseDistanceCalcDTO(DistanceMethod.CITY_BLOCK, request.featureA(), request.featureB(), result);
+            return EventDTO.success(response);
         } catch (IOException e) {
             return EventDTO.error("Erro ao desserializar requisição");
         }

@@ -18,11 +18,11 @@ public class MessageRequestHandler {
     private final List<String> greetings = List.of("oi", "ola", "eai", "como vai", "bom", "boa", "tudo");
 
     public EventDTO<?> handleJokeRequest(Message message) {
-        String request = deserialize(message);
-        log.info("Requisição recebida: {}", request);
 
         String subject = Optional.ofNullable(message.getSubject()).orElse("");
         String type = List.of(subject.split("[.]")).getLast();
+        log.info("Requisição recebida de piada recebida -> tipo {}", type);
+
         String joke = jokesApiClient.fetchJoke(type).map(dto -> dto.setup() + "... " + dto.punchline()).orElse("");
         return EventDTO.success(joke);
     }

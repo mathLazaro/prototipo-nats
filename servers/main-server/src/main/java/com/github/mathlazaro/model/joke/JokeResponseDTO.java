@@ -1,4 +1,4 @@
-package com.github.mathlazaro.model;
+package com.github.mathlazaro.model.joke;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
