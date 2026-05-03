@@ -36,16 +36,15 @@
             <version>2.16.0</version>
         </dependency>
         <dependency>
-            <groupId>br.com.seuprojeto.distribuidos</groupId>
+            <groupId>com.github.mathlazaro</groupId>
             <artifactId>atividade-rmi-shared</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.github.mathlazaro</groupId>
             <artifactId>nats-conn-manager</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
