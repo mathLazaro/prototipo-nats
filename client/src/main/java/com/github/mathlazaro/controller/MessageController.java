@@ -16,6 +16,9 @@ import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 import java.time.Duration;
 
+/**
+ * Controller responsável por gerenciar a interação do usuário com as funcionalidades de mensagens, como solicitar piadas ou enviar mensagens de saudação
+ */
 @Log4j2
 @AllArgsConstructor
 public class MessageController {
@@ -26,6 +29,9 @@ public class MessageController {
 
     private final ObjectMapper mapper;
 
+    /**
+     * Executa o loop de interação com o usuário para ler a operação desejada (piada ou saudação), os detalhes necessários para cada operação e solicitar a resposta do servidor, exibindo-a ao usuário
+     */
     public void run() {
         do {
             MessageOperation operation = view.readOperation();
@@ -38,6 +44,9 @@ public class MessageController {
         } while (View.readKeepRunning(MainClient.IN));
     }
 
+    /**
+     * Lida com o fluxo de execução da requisição de piadas
+     */
     private void handleJokeOp() {
         JokeType jokeType = view.readJokeType();
 
@@ -61,6 +70,9 @@ public class MessageController {
         }
     }
 
+    /**
+     * Lida com o fluxo de execução da requisição de mensagens de saudação
+     */
     private void handleGreetingOp() {
         String greeting = view.readMessage();
         String subject = MessageOperation.GREETINGS.getSubject();

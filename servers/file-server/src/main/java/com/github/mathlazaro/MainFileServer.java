@@ -20,15 +20,17 @@ public class MainFileServer {
 
         FileHandler fileHandler = new FileHandler(new FileService(), objectMapper);
 
+        // Cria conexão
         NatsConnectionManager connManager = new NatsConnectionManager(NATS_URL, "file-server", objectMapper);
 
         Connection nc = connManager.getNc();
 
+        // Realiza o subscribe nos tópicos de operações de arquivo
         nc.createDispatcher(fileHandler.handleSaveFile()).subscribe("file.save", "file-queue");
         nc.createDispatcher(fileHandler.handleAppendFile()).subscribe("file.append", "file-queue");
         nc.createDispatcher(fileHandler.handleDeleteFile()).subscribe("file.delete", "file-queue");
 
-        // funciona com request reply
+        // Realiza o subscribe para leitura de arquivo (request-reply)
         connManager.publishReply("file.read", fileHandler::handleReadFile);
 
     }

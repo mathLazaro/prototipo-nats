@@ -16,6 +16,9 @@ import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 import java.time.Duration;
 
+/**
+ * Controller responsável por gerenciar a interação do usuário com as funcionalidades de manipulação de arquivo
+ */
 @Log4j2
 @AllArgsConstructor
 public class FileController {
@@ -26,6 +29,9 @@ public class FileController {
 
     private final ObjectMapper mapper;
 
+    /**
+     * Executa o fluxo de interação com o usuário para ler a operação desejada (salvar, ler, adicionar ou deletar), os detalhes necessários para cada operação e solicitar a resposta do servidor, exibindo-a ao usuário
+     */
     public void run() {
         do {
             FileOperation operation = view.readOperation();
@@ -40,6 +46,9 @@ public class FileController {
         } while (View.readKeepRunning(MainClient.IN));
     }
 
+    /**
+     * Lida com a requisição de salvamento de arquivo
+     */
     private void handleSaveOp() {
         try {
             String fileName = view.readFileName();
@@ -57,6 +66,9 @@ public class FileController {
         }
     }
 
+    /**
+     * Lida com a requisição de leitura de arquivo (Request-reply)
+     */
     private void handleReadOp() {
         try {
             String fileName = view.readFileName();
@@ -79,6 +91,9 @@ public class FileController {
         }
     }
 
+    /**
+     * Lida com a adição de texto no final do arquivo
+     */
     private void handleAppendOp() {
         try {
             String fileName = view.readFileName();
@@ -96,6 +111,9 @@ public class FileController {
         }
     }
 
+    /**
+     * Lida com a deleção de arquivo
+     */
     private void handleDeleteOp() {
         try {
             String fileName = view.readFileName();

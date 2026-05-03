@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.time.Duration;
 
 
+/**
+ * Controller responsável por gerenciar a interação do usuário com as funcionalidades de cálculo de distância entre flores
+ */
 @Log4j2
 @AllArgsConstructor
 public class FlowerController {
@@ -29,6 +32,9 @@ public class FlowerController {
 
     private final ObjectMapper mapper;
 
+    /**
+     * Executa o loop de interação com o usuário para ler as características das flores, a tipo de cálculo e solicitar a distância calculada
+     */
     public void run() {
         do {
             FlowerFeature featureA = view.readFlowerFeature("A");

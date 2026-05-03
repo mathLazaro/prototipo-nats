@@ -11,6 +11,9 @@ import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 
+/**
+ * Classe responsável por lidar com as requisições de alteração de arquivo
+ */
 @AllArgsConstructor
 @Log4j2
 public class FileHandler {
@@ -19,6 +22,10 @@ public class FileHandler {
 
     private final ObjectMapper mapper;
 
+    /**
+     * Lida com o salvamento de arquivos
+     * @return MessageHandler - classe pronta para ser usada como callback em assinaturas de eventos do NATS
+     */
     public MessageHandler handleSaveFile() {
         return msg -> {
             byte[] data = msg.getData();
@@ -32,6 +39,11 @@ public class FileHandler {
         };
     }
 
+    /**
+     * Lida com a leitura de arquivo (request-reply)
+     * @param msg mensagem a ser tratada
+     * @return EventDTO<?> - resposta a ser enviada de volta ao solicitante da leitura do arquivo
+     */
     public EventDTO<?> handleReadFile(Message msg) {
         try {
             byte[] data = msg.getData();
@@ -45,6 +57,10 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Lida com o acréscimo de dados em arquivos
+     * @return MessageHandler - classe pronta para ser usada como callback em assinaturas de eventos do NATS
+     */
     public MessageHandler handleAppendFile() {
         return msg -> {
             byte[] data = msg.getData();
@@ -58,6 +74,10 @@ public class FileHandler {
         };
     }
 
+    /**
+     * Lida com a deleção de arquivos
+     * @return MessageHandler - classe pronta para ser usada como callback em assinaturas de eventos do NATS
+     */
     public MessageHandler handleDeleteFile() {
         return msg -> {
             byte[] data = msg.getData();

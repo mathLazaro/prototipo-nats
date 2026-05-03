@@ -26,14 +26,17 @@ public class MainClient {
         log.info("client iniciando");
 
 
+        // Cria a conexão via manager
         NatsConnectionManager connManager = new NatsConnectionManager(NATS_URL, "client", mapper);
 
+        // Instanciação dos controllers
         FlowerController flowerController = new FlowerController(connManager.getNc(), mapper);
         MessageController messageController = new MessageController(connManager.getNc(), mapper);
         FileController fileController = new FileController(connManager.getNc(), mapper);
 
         MainView mainView = new MainView();
 
+        // Execução do loop de interação com o usuário
         do {
             try {
                 MainOperation operation = mainView.readMainOperation();
@@ -48,6 +51,7 @@ public class MainClient {
             }
         } while (View.readKeepRunning(IN));
 
+        // Fecha a conexão ao finalizar o loop
         connManager.closeConnection();
 
     }

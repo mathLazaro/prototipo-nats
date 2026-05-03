@@ -19,11 +19,13 @@ public final class MainServer {
     public static void main(String[] args) throws Exception {
         log.info("main-producer starting");
 
+        // Inicia a conexão com o NATS e configura os handlers para as mensagens
         DistanceCalculatorHandler calculatorHandler = new DistanceCalculatorHandler(new DistanceCalculatorServiceImpl(), objectMapper);
         MessageRequestHandler messageRequestHandler = new MessageRequestHandler(new JokesApiClient(objectMapper));
 
         NatsConnectionManager connManager = new NatsConnectionManager(NATS_URL, "main-producer", objectMapper);
 
+        // Configura os handlers para as mensagens de distância e mensagens gerais
         connManager.publishReply("distances.euclidean", calculatorHandler::handleEuclideanCalculation);
         connManager.publishReply("distances.cityblock", calculatorHandler::handleCityBlockCalculation);
 
