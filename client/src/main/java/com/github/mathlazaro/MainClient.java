@@ -45,5 +45,7 @@ public class MainClient {
 
         } while (View.readKeepRunning(IN));
 
+        connManager.closeConnection();
+
     }
 }
