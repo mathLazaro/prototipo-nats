@@ -35,14 +35,17 @@ public class MainClient {
         MainView mainView = new MainView();
 
         do {
-            MainOperation operation = mainView.readMainOperation();
+            try {
+                MainOperation operation = mainView.readMainOperation();
 
-            switch (operation) {
-                case FLOWER_CALCULATION -> flowerController.run();
-                case MESSAGE -> messageController.run();
-                case FILE -> fileController.run();
+                switch (operation) {
+                    case FLOWER_CALCULATION -> flowerController.run();
+                    case MESSAGE -> messageController.run();
+                    case FILE -> fileController.run();
+                }
+            } catch (Exception e) {
+                log.error(e);
             }
-
         } while (View.readKeepRunning(IN));
 
         connManager.closeConnection();

@@ -29,7 +29,7 @@ public class MainView implements View {
             return readMainOperation();
         } catch (Exception e) {
             System.err.println("Erro ao ler a opção de operação. Tente novamente.");
-            return readMainOperation();
+            throw e;
         }
     }
 

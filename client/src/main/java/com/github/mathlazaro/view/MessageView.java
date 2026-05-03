@@ -41,7 +41,7 @@ public class MessageView implements View {
             return readOperation();
         } catch (Exception e) {
             System.err.println("Erro ao ler a opção de operação. Tente novamente.");
-            return readOperation();
+            throw e;
         }
     }
 
@@ -77,7 +77,7 @@ public class MessageView implements View {
             return readJokeType();
         } catch (Exception e) {
             System.err.println("Erro ao ler a opção de tipo de piada. Tente novamente.");
-            return readJokeType();
+            throw e;
         }
     }
 

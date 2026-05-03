@@ -44,7 +44,7 @@ public class FileView implements View {
             return readOperation();
         } catch (Exception e) {
             System.err.println("Erro ao ler a opção de operação. Tente novamente.");
-            return readOperation();
+            throw e;
         }
     }
 
