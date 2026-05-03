@@ -54,9 +54,9 @@ public class MessageView implements View {
         try {
             System.out.println("Escolha o tipo de piada (1 a 5):");
             System.out.println("1. Geral");
-            System.out.println("2. Knock-Knock");
+            System.out.println("2. Bate-bate");
             System.out.println("3. Programação");
-            System.out.println("4. Dad");
+            System.out.println("4. Pai");
             System.out.println("5. Variado");
             System.out.print("Opção: ");
             int option = IN.nextInt();
