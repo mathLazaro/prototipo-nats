@@ -1,0 +1,39 @@
+
+\section{Vantagens}
+O NATS, por ser escrito em Go, oferece altíssimo desempenho, roteando milhões de mensagens por segundo com latência de microssegundos, próximo ao limite da rede física. É leve e simples, com um único binário sem dependências externas, baixo consumo de RAM e deploy facilitado. Além disso, sua arquitetura em cluster permite auto-descoberta, escalabilidade e auto-reparo, reconfigurando a rede automaticamente em caso de falha de um nó, garantindo alta disponibilidade sem interrupções.
+
+\subsection{Limitações}
+O NATS possui limitações como o tamanho restrito das mensagens (1 MB por padrão), sendo mais adequado para mensagens curtas. Também não oferece lógica complexa de roteamento como outros middlewares, utilizando apenas o casamento de strings nos subjects. Além disso, na versão básica (Core), não há persistência nativa — mensagens sem consumidores ativos são descartadas, sendo necessário usar o módulo JetStream para persistência.
+
+\subsection{Comparação com Tecnologias Correlatas}
+A Tabela apresenta uma comparação entre o NATS e outras soluções de mensageria amplamente utilizadas, com base em características discutidas por \cite{sharvari2019messaging} e na documentação oficial do NATS \cite{nats_compare}.
+\begin{table}[H]
+\centering
+\caption{Comparação entre middlewares de mensageria}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Critério} & \textbf{NATS} & \textbf{RabbitMQ} & \textbf{Kafka} \\ \hline
+Latência & Muito baixa & Média/baixa & Média \\ \hline
+Persistência nativa & Via JetStream & Sim & Sim \\ \hline
+Roteamento complexo & Básico & Avançado & Médio \\ \hline
+Escalabilidade & Alta & Média/alta & Alta \\ \hline
+Complexidade operacional & Baixa & Média/alta & Alta \\ \hline
+\end{tabular}
+\label{tab:comparacao_middlewares}
+\end{table}
+
+\subsection{Cenários Adequados}
+O NATS é indicado para sistemas financeiros e de alta frequência, onde o tempo mínimo de resposta é essencial para distribuir alertas em tempo real. Também é adequado para arquiteturas de microsserviços reativos, atuando como infraestrutura de troca eficiente de mensagens entre serviços, além de aplicações de IoT e telemetria, suportando grandes volumes de pequenos pacotes de dados enviados por sensores e dispositivos conectados.
+
+\subsection{Cenários Não Recomendados}
+Não é indicado para transferência de arquivos grandes devido ao limite de tamanho das mensagens, nem para sistemas com transações complexas (ACID), que exigem garantias rigorosas de consistência e rollback. Também não é a melhor escolha para filas de processamento pesado e tarefas de longa duração, onde soluções especializadas em gerenciamento de tarefas podem ser mais adequadas.
+
+
+\section{Links do Projeto}
+
+\begin{itemize}
+    \item Repositório do código-fonte:
+    \url{https://github.com/mathLazaro/prototipo-nats}
+\end{itemize}
+
+

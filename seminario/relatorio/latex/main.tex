@@ -1,0 +1,43 @@
+% Universidade Federal de Itajuba
+% Instituto de Matematica e Computacao
+%
+% Modelo LaTeX para escrita de trabalhos da (Minicurso, Projeto, Relatório)
+% para os cursos de Ciencia da Computacao e Sistemas de Informacao, em formato de artigo.
+% Insira o nome dos integrantes do trabalho no arquivo configuracao.tex
+
+
+% Passe, entre os colchetes, a sigla do curso: cco/sin (letras minusculas)
+\documentclass[sin]{imc}
+
+% Definicao dos dados do autor do trabalho
+% Edite o arquivo 'configuracao.tex'
+\input{configuracao} % Nao altere este comando
+
+% Inicio do documento
+\begin{document} % Nao altere este comando
+
+% Gera a capa, folha de rosto, ficha catalografica e folha de aprovacao: obrigatorios no texto.
+\maketitle % Nao altere este comando
+
+% Secoes do texto: para inserir novas secoes, seguir o mesmo modelo abaixo.
+\input{./elemtextuais/1-Introducao}
+\input{./elemtextuais/2-Fundamentacao}
+\input{./elemtextuais/3-Prototipo}
+\input{./elemtextuais/4-Aplicacoes}
+\input{./elemtextuais/5-Avaliacao}
+
+
+% Estilo da bilbliografia
+\bibliographystyle{apalike2_ptBR} % Nao altere este comando
+
+% Bibliografia no formato BibTeX:
+% Edite o arquivo 'referencias.bib'
+\bibliography{referencias}
+
+% Apendices/Anexos: 
+% Se muito necessarios, apendices/anexos devem ser inseridos como \section*{}
+% Para inserir estes elementos, seguir o mesmo modelo abaixo.
+%\input{nome-do-arquivo}
+
+% Fim do documento
+\end{document} % Nao altere este comando
